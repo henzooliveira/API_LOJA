@@ -1,14 +1,11 @@
 package com.loja;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/loja/podutos")
+@RequestMapping("/api/loja/produtos")
 public class ProdutoController {
     private Tabelaprodutos tabelaprodutos;
 
@@ -24,5 +21,10 @@ public class ProdutoController {
     public Produto buscarProdutoPeloIdNaLoja(@PathVariable int produtoId){
         Produto produtoProcurado = this.tabelaprodutos.buscarProdutoPeloId(produtoId);
         return produtoProcurado;
+    }
+
+    @PostMapping
+    public Produto cadastrarprodutonaloja(@RequestBody Produto dadosNovoProduto){
+        return this.tabelaprodutos.cadastrasNovoProduto((dadosNovoProduto));
     }
 }
